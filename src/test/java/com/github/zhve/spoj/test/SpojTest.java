@@ -10,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class SpojTest {
@@ -104,6 +105,11 @@ public class SpojTest {
     }
 
     @Test
+    public void PRLCM() throws Exception {
+        run(PRLCM.class);
+    }
+
+    @Test
     public void SAMER08F() throws Exception {
         run(SAMER08F.class);
     }
@@ -123,7 +129,7 @@ public class SpojTest {
         run(TEST.class);
     }
 
-    public void run(Class clazz) throws Exception {
+    public void run(Class<?> clazz) throws Exception {
         String name = clazz.getSimpleName();
         ClassLoader cl = getClass().getClassLoader();
         int i = 0;
@@ -169,7 +175,7 @@ public class SpojTest {
         Scanner scanner = new Scanner(is, "UTF-8");
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         while (scanner.hasNext()) {
-            out.write(scanner.nextLine().getBytes("UTF-8"));
+            out.write(scanner.nextLine().getBytes(StandardCharsets.UTF_8));
             out.write('\n');
         }
         return out.toByteArray();
